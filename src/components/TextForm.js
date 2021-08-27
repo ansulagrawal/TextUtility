@@ -14,6 +14,20 @@ export default function TextForm(props) {
         setText(newText)
     }
 
+    const handleCewClick =() =>{
+        let wor = text.split(" ");
+        for (var i = 0; i< wor.length; i++){
+            wor[i] = wor[i].charAt(0).toUpperCase() + wor[i].slice(1);
+        }
+
+        let str1 = wor.join(" ");
+        setText(str1)
+    }
+    
+    const handleClearClick =() => {
+        setText("")
+    }
+
     const handleOnChange = (event) => {
         // console.log("on change");
         setText(event.target.value)
@@ -32,6 +46,8 @@ export default function TextForm(props) {
             </div>
             <div className="btn btn-primary" onClick={handleUpClick}>Convert to Uppercase</div>
             <div className="btn btn-success mx-3" onClick={handleLowClick}>Convert to Lowercase</div>
+            <div className="btn btn-danger mx-3" onClick={handleCewClick}>Capitalize each word</div>
+            <div className="btn btn-danger mx-3" onClick={handleClearClick}>Clear Text</div>
         </div>
         <div className="container my-3">
             <h3>Your text summary:</h3>
