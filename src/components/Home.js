@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import Alert from './Alert';
 import Navbar from './Navbar';
 import TextForm from './TextForm';
-// import About from './About';
+import About from './About';
+import { BrowserRouter as Router, Route, Switch, NavLink, Link } from 'react-router-dom';
+
 
 
 export default function Home() {
@@ -57,11 +59,18 @@ export default function Home() {
     }   
     return (
         <>
-            <Navbar title="TextUtils" about="About" mode={mode} toggleMode={toggleMode} />
-            <Alert alert={alert} />
-            <TextForm heading="Enter a text to analyze below" showAlert={showAlert} mode={mode} colr={colr} />
-            {/* <About /> */}
-            
+            <Router>
+                <Navbar title="TextUtils" about="About" mode={mode} toggleMode={toggleMode} />
+                <Alert alert={alert} />
+                <Switch>
+                    <Route exact path="/about">
+                        <About />
+                    </Route>
+                    <Route exact path="/">
+                        <TextForm heading="Enter a text to analyze below" showAlert={showAlert} mode={mode} colr={colr} />
+                    </Route>
+                </Switch>
+            </Router>
         </>
     )
 }
