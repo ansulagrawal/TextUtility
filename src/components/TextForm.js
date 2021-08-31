@@ -50,6 +50,13 @@ export default function TextForm(props) {
         props.showAlert("Removed the extra Spaces!","success");
     }
 
+    //Remove all spaces function
+    const handleSpaces = () => {
+        let newText = text.split(/[ ]+/);
+        setText(newText.join(""));
+        props.showAlert("Removed all Spaces!","success");
+    }
+
     // On Change function
     const handleOnChange = (event) => {
         setText(event.target.value)
@@ -70,6 +77,7 @@ export default function TextForm(props) {
             <div className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-3`} onClick={handleCopy}>Copy Text</div>
             <div className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-3`} onClick={handleClearClick}>Clear Text</div>
             <div className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-3`} onClick={handleExtraSpaces}>Remove Extra Space</div>
+            <div className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-3`} onClick={handleSpaces}>Remove all Space</div>
         </div>
         <div className="container my-3 " style={{color:props.mode ==="light"? "#212529" :"rgb(252 240 240)"}}>
             <h3>Your text summary:</h3>
