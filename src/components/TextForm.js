@@ -57,20 +57,21 @@ export default function TextForm(props) {
 
     return (
         <>
-        <div className="container mb-3 " style={{color:props.mode ==="dark"? "rgb(252 240 240)" :"#212529"}}>
+        <div className="container mb-3 " style={{color:props.mode ==="light"? "#212529" :"rgb(252 240 240)"}}>
             <h1>{props.heading}</h1>
             <div className="mb-3">
                 <label htmlFor="myBox" className="form-label "></label>
-                <textarea className="form-control " id="myBox" rows="10" placeholder="Enter text here" style={{backgroundColor: props.mode ==="light"? "white" :"#051f39", color:props.mode ==="dark"? "rgb(252 240 240)" :"black"}} value={text} onChange={handleOnChange}></textarea>
+                {/* <textarea className="form-control " id="myBox" rows="10" placeholder="Enter text here" style={{backgroundColor: props.mode ==="light"? "white" :"#051f39", color:props.mode ==="dark"? "rgb(252 240 240)" :"black"}} value={text} onChange={handleOnChange}></textarea> */}
+                <textarea className="form-control " id="myBox" rows="10" placeholder="Enter text here" style={{backgroundColor: "#ffffff24" , color: props.mode ==="light"? "black" : "white"}} value={text} onChange={handleOnChange}></textarea>
             </div>
-            <div className="btn btn-info" onClick={handleUpClick}>Convert to Uppercase</div>
-            <div className="btn btn-info mx-3" onClick={handleLowClick}>Convert to Lowercase</div>
-            <div className="btn btn-info mx-3" onClick={handleCewClick}>Capitalize each word</div>
-            <div className="btn btn-info mx-3" onClick={handleCopy}>Copy Text</div>
-            <div className="btn btn-info mx-3" onClick={handleClearClick}>Clear Text</div>
-            <div className="btn btn-info mx-3" onClick={handleExtraSpaces}>Remove Extra Space</div>
+            <div className={`btn btn-${props.mode === 'light' ? "primary" : props.mode}`} onClick={handleUpClick}>Convert to Uppercase</div>
+            <div className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-3`} onClick={handleLowClick}>Convert to Lowercase</div>
+            <div className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-3`} onClick={handleCewClick}>Capitalize each word</div>
+            <div className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-3`} onClick={handleCopy}>Copy Text</div>
+            <div className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-3`} onClick={handleClearClick}>Clear Text</div>
+            <div className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-3`} onClick={handleExtraSpaces}>Remove Extra Space</div>
         </div>
-        <div className="container my-3 " style={{color:props.mode ==="dark"? "rgb(252 240 240)" :"#212529"}}>
+        <div className="container my-3 " style={{color:props.mode ==="light"? "#212529" :"rgb(252 240 240)"}}>
             <h3>Your text summary:</h3>
             <p>{text.split(" ").length} words and {text.length} characters.</p>
             <p>{text.split(" ").length * 0.008} min read</p>
