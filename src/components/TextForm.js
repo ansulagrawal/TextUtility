@@ -5,49 +5,56 @@ export default function TextForm(props) {
 
     const [text, setText] = useState("")
 
+    // Uppercase function
     const handleUpClick =() => {
-        // console.log("Uppercase was clicked");
         let newText = text.toUpperCase();
-        setText(newText)
+        setText(newText);
+        props.showAlert("Converted to Uppercase!","success");
     }
 
+    // Lowercase function
     const handleLowClick =() => {
-        // console.log("Uppercase was clicked");
         let newText = text.toLocaleLowerCase();
-        setText(newText)
+        setText(newText);
+        props.showAlert("Converted to Lowercase!","success");
     }
 
+    // Capitalize each word function
     const handleCewClick =() =>{
         let wor = text.split(" ");
         for (var i = 0; i< wor.length; i++){
             wor[i] = wor[i].charAt(0).toUpperCase() + wor[i].slice(1);
         }
-
         let str1 = wor.join(" ");
-        setText(str1)
+        setText(str1);
+        props.showAlert("Capitalize each word!","success");
     }
 
+    // Copy to Clipboard function
     const handleCopy =() => {
         var text =document.getElementById("myBox");
         text.select();
         navigator.clipboard.writeText(text.value);
+        props.showAlert("Coppied to Clipboard!","success");
     }
-
+    // Cleared all text function
     const handleClearClick =() => {
-        setText("")
+        setText("");
+        props.showAlert("Cleared all text!", "success")
     }
 
+    //Remove extra spaces function
     const handleExtraSpaces = () => {
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "));
+        props.showAlert("Removed the extra Spaces!","success");
     }
 
+    // On Change function
     const handleOnChange = (event) => {
-        // console.log("on change");
         setText(event.target.value)
     }
 
-    
     return (
         <>
         <div className="container mb-3 " style={{color:props.mode ==="dark"? "rgb(252 240 240)" :"#212529"}}>
@@ -62,8 +69,6 @@ export default function TextForm(props) {
             <div className="btn btn-info mx-3" onClick={handleCopy}>Copy Text</div>
             <div className="btn btn-info mx-3" onClick={handleClearClick}>Clear Text</div>
             <div className="btn btn-info mx-3" onClick={handleExtraSpaces}>Remove Extra Space</div>
-            {/* <div className="btn btn-dark mx-3" onClick={handlePaste}>Paste Text</div> */}
-
         </div>
         <div className="container my-3 " style={{color:props.mode ==="dark"? "rgb(252 240 240)" :"#212529"}}>
             <h3>Your text summary:</h3>
