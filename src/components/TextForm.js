@@ -5,6 +5,7 @@ export default function TextForm(props) {
 
     const [text, setText] = useState("")
 
+
     // Uppercase function
     const handleUpClick =() => {
         let newText = text.toUpperCase();
@@ -34,6 +35,7 @@ export default function TextForm(props) {
     const handleCopy =() => {
         var text =document.getElementById("myBox");
         text.select();
+        document.getSelection().removeAllRanges();
         navigator.clipboard.writeText(text.value);
         props.showAlert("Coppied to Clipboard!","success");
     }
@@ -64,27 +66,26 @@ export default function TextForm(props) {
 
     return (
         <>
-        <div className="container mb-3 " style={{color:props.mode ==="light"? "#212529" :"rgb(252 240 240)"}}>
-            <h1>{props.heading}</h1>
-            <div className="mb-3">
-                <label htmlFor="myBox" className="form-label "></label>
+        <div className="container " style={{color:props.mode ==="light"? "#212529" :"rgb(252 240 240)"}}>
+            <h1 className="mb-4">{props.heading}</h1>
+            <div className="m-1">
                 {/* <textarea className="form-control " id="myBox" rows="10" placeholder="Enter text here" style={{backgroundColor: props.mode ==="light"? "white" :"#051f39", color:props.mode ==="dark"? "rgb(252 240 240)" :"black"}} value={text} onChange={handleOnChange}></textarea> */}
                 <textarea className="form-control " id="myBox" rows="10" placeholder="Enter text here" style={{backgroundColor: "#ffffff24" , color: props.mode ==="light"? "black" : "white"}} value={text} onChange={handleOnChange}></textarea>
             </div>
-            <div className={`btn btn-${props.mode === 'light' ? "primary" : props.mode}`} onClick={handleUpClick}>Convert to Uppercase</div>
-            <div className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-3`} onClick={handleLowClick}>Convert to Lowercase</div>
-            <div className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-3`} onClick={handleCewClick}>Capitalize each word</div>
-            <div className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-3`} onClick={handleCopy}>Copy Text</div>
-            <div className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-3`} onClick={handleClearClick}>Clear Text</div>
-            <div className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-3`} onClick={handleExtraSpaces}>Remove Extra Space</div>
-            <div className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-3`} onClick={handleSpaces}>Remove all Space</div>
+            <button disabled={text.length === 0} className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-1 my-1`} onClick={handleUpClick}>Convert to Uppercase</button>
+            <button disabled={text.length === 0} className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-1 my-1`} onClick={handleLowClick}>Convert to Lowercase</button>
+            <button disabled={text.length === 0} className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-1 my-1`} onClick={handleCewClick}>Capitalize each word</button>
+            <button disabled={text.length === 0} className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-1 my-1`} onClick={handleCopy}>Copy Text</button>
+            <button disabled={text.length === 0} className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-1 my-1`} onClick={handleClearClick}>Clear Text</button>
+            <button disabled={text.length === 0} className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-1 my-1`} onClick={handleExtraSpaces}>Remove Extra Space</button>
+            <button disabled={text.length === 0} className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-1 my-1`} onClick={handleSpaces}>Remove all Space</button>
         </div>
         <div className="container my-3 " style={{color:props.mode ==="light"? "#212529" :"rgb(252 240 240)"}}>
             <h3>Your text summary:</h3>
-            <p>{text.split(" ").length} words and {text.length} characters.</p>
-            <p>{text.split(" ").length * 0.008} min read</p>
+            <p>{text.split(" ").filter((ele)=>{return ele.length!==0}).length} words and {text.length} characters.</p>
+            <p>{text.split(" ").filter((ele)=>{return ele.length!==0}).length * 0.008} min read</p>
             <h3>Preview:</h3>
-            <p>{text.length > 0 ? text : "Enter something in the above box to preview here!"}</p>
+            <p>{text.length > 0 ? text : "Nothing to preview!"}</p>
         </div>
         </>
     )

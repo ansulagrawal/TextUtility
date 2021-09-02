@@ -3,7 +3,7 @@ import Alert from './Alert';
 import Navbar from './Navbar';
 import TextForm from './TextForm';
 import About from './About';
-import { BrowserRouter as Router, Route, Switch, NavLink, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, /*NavLink, Link*/ } from 'react-router-dom';
 
 
 
@@ -60,14 +60,14 @@ export default function Home() {
     return (
         <>
             <Router>
-                <Navbar title="TextUtils" about="About" mode={mode} toggleMode={toggleMode} />
+                <Navbar title="Text Editor" about="About" mode={mode} toggleMode={toggleMode} />
                 <Alert alert={alert} />
                 <Switch>
                     <Route exact path="/about">
-                        <About />
+                        <About mode={mode} colr={colr} />
                     </Route>
                     <Route exact path="/">
-                        <TextForm heading="Enter a text to analyze below" showAlert={showAlert} mode={mode} colr={colr} />
+                        <TextForm heading="Try Text Editor, word counter, character counter, remove extra spaces ..." showAlert={showAlert} mode={mode} colr={colr} />
                     </Route>
                 </Switch>
             </Router>
