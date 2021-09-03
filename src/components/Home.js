@@ -60,14 +60,14 @@ export default function Home() {
     return (
         <>
             <Router>
-                <Navbar title="Text Editor" about="About" mode={mode} toggleMode={toggleMode} />
+                <Navbar title="TextEditor" about="About" mode={mode} toggleMode={toggleMode} />
                 <Alert alert={alert} />
                 <Switch>
                     <Route exact path="/about">
                         <About mode={mode} colr={colr} />
                     </Route>
                     <Route exact path="/">
-                        <TextForm heading="Try Text Editor, word counter, character counter, remove extra spaces ..." showAlert={showAlert} mode={mode} colr={colr} />
+                        <TextForm heading="Try TextEditor, word counter, character counter, remove extra spaces ..." showAlert={showAlert} mode={mode} colr={colr} />
                     </Route>
                 </Switch>
             </Router>

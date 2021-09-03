@@ -33,10 +33,7 @@ export default function TextForm(props) {
 
     // Copy to Clipboard function
     const handleCopy =() => {
-        var text =document.getElementById("myBox");
-        text.select();
-        document.getSelection().removeAllRanges();
-        navigator.clipboard.writeText(text.value);
+        navigator.clipboard.writeText(text);
         props.showAlert("Coppied to Clipboard!","success");
     }
     // Cleared all text function
@@ -69,7 +66,6 @@ export default function TextForm(props) {
         <div className="container " style={{color:props.mode ==="light"? "#212529" :"rgb(252 240 240)"}}>
             <h1 className="mb-4">{props.heading}</h1>
             <div className="m-1">
-                {/* <textarea className="form-control " id="myBox" rows="10" placeholder="Enter text here" style={{backgroundColor: props.mode ==="light"? "white" :"#051f39", color:props.mode ==="dark"? "rgb(252 240 240)" :"black"}} value={text} onChange={handleOnChange}></textarea> */}
                 <textarea className="form-control " id="myBox" rows="10" placeholder="Enter text here" style={{backgroundColor: "#ffffff24" , color: props.mode ==="light"? "black" : "white"}} value={text} onChange={handleOnChange}></textarea>
             </div>
             <button disabled={text.length === 0} className={`btn btn-${props.mode === 'light' ? "primary" : props.mode} mx-1 my-1`} onClick={handleUpClick}>Convert to Uppercase</button>
@@ -82,8 +78,8 @@ export default function TextForm(props) {
         </div>
         <div className="container my-3 " style={{color:props.mode ==="light"? "#212529" :"rgb(252 240 240)"}}>
             <h3>Your text summary:</h3>
-            <p>{text.split(" ").filter((ele)=>{return ele.length!==0}).length} words and {text.length} characters.</p>
-            <p>{text.split(" ").filter((ele)=>{return ele.length!==0}).length * 0.008} min read</p>
+            <p>{text.split(/\s+/).filter((ele)=>{return ele.length!==0}).length} words and {text.length} characters.</p>
+            <p>{(text.split(/\s+/).filter((ele)=>{return ele.length!==0}).length * 0.008).toFixed(4)} min read</p>
             <h3>Preview:</h3>
             <p>{text.length > 0 ? text : "Nothing to preview!"}</p>
         </div>

@@ -14,7 +14,7 @@ export default function About(props) {
                     </h2>
                     <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div className="accordion-body">
-                        Text Editor gives you a way to analyze your text quickly and efficiently. Be it word count, character count or
+                        TextEditor gives you a way to analyze your text quickly and efficiently. Be it word count, character count or
                     </div>
                     </div>
                 </div>
@@ -44,9 +44,6 @@ export default function About(props) {
                 </div>
             </div> 
          </div>   
-         {/* <div className="container my-4">
-                <button type="button" className="btn btn-primary">Enable dark Mode</button>
-         </div> */}
         </>
     )
 }
